@@ -26,90 +26,6 @@
     <![endif]-->
     
     <section class="searchResults">
-
-      <!-- <div class="searchResults_leftrail">
-        <div class="searchResults_leftrailContainer">
-<div class="searchResults_leftrail_filter" data-remote="true">
-<h2 class="searchResults_leftrail_filterPanel">Filter your results</h2>
-<div class="searchResults_leftrail_filterTitle">
-<div class="filters__group" data-expanded="true">
-<h3 class="filters__group-heading">Departure dates</h3>
-<ul class="filters__options">
-  <li>
-    <input type="checkbox" name="any" class="filters__option--any" id="any-departure_date" checked="">
-    <label class="searchResults_leftrail_filterLabel searchResults_leftrail_filterLabel--checkbox" for="any-departure_date">
-      Any
-      
-        <span class="filters__postfix">
-          PP inc. taxes
-        </span>
-      
-    </label>
-  </li>
-<li><input type="checkbox" name="filters[Sat 23 Sep]" value="2017-09-23" class="filters__option" id="departure_date-2017-09-23">
-
-<label class="searchResults_leftrail_filterLabel searchResults_leftrail_filterLabel--checkbox" for="departure_date-2017-09-23">
-  Sat 23 Sep
-  <span class="filters__postfix">
-  
-  <strong class="filters__price">£174.76</strong>
-</span>
-
-</label>
-</li><li><input type="checkbox" name="filters[Sun 24 Sep]" value="2017-09-24" class="filters__option" id="departure_date-2017-09-24">
-
-<label class="searchResults_leftrail_filterLabel searchResults_leftrail_filterLabel--checkbox" for="departure_date-2017-09-24">
-  Sun 24 Sep
-  <span class="filters__postfix">
-  
-
-  <strong class="filters__price">£194.48</strong>
-</span>
-
-</label>
-</li><li><input type="checkbox" name="filters[Mon 25 Sep]" value="2017-09-25" class="filters__option" id="departure_date-2017-09-25">
-
-<label class="searchResults_leftrail_filterLabel searchResults_leftrail_filterLabel--checkbox" for="departure_date-2017-09-25">
-  Mon 25 Sep
-  <span class="filters__postfix">
-  
-
-  <strong class="filters__price">£138.98</strong>
-</span>
-
-
-</label>
-</li></ul>
-</div><div class="filters__group" data-expanded="true"><h3 class="filters__group-heading">Departing from</h3>
-<ul class="filters__options">
-<li><input type="checkbox" name="filters[London Gatwick]" value="LGW" class="filters__option" id="departure_airport-LGW">
-
-<label class="searchResults_leftrail_filterLabel searchResults_leftrail_filterLabel--checkbox" for="departure_airport-LGW">
-  London Gatwick
-  <span class="filters__postfix">
-  
-
-  <strong class="filters__price">£124.07</strong>
-</span>
-
-</label>
-</li><li><input type="checkbox" name="filters[London Luton]" value="LTN" class="filters__option" id="departure_airport-LTN">
-
-<label class="searchResults_leftrail_filterLabel searchResults_leftrail_filterLabel--checkbox" for="departure_airport-LTN">
-  London Luton
-  <span class="filters__postfix">
-  
-    <span class="filters__postfix-label filters__postfix-label--cheapest">cheapest</span>
-  
-
-  <strong class="filters__price">£109.88</strong>
-</span>
-
-</label>
-</li>
-</div>
-</div>
-      </div> -->
         <div class="searchResults_leftrail">
           <div class="searchResults_leftrail_filter">
             <h2 class="searchResults_leftrail_filterHeader">Filter your results</h2>
@@ -120,13 +36,14 @@
                 </h3>
                 <ul class="searchResults_leftrail_filterGroupOptions">
                   <li>
-                  <input type="checkbox" id="date-1" />
+                  <input class="searchResults_leftrail_filterGroupCheckBox" type="checkbox" id="date-1" name="departure"
+                  value="2017-07-3"/>
                     <label for="date-1"> 3 July 2017</label>
                     
                   </li>
 
                    <li>
-                   <input type="checkbox" id="date-1" />
+                   <input class="searchResults_leftrail_filterGroupCheckBox" type="checkbox" id="date-2" name="departure" value="2017-07-21"/>
                     <label for="date-2"> 21 July 2017</label>
                   </li>
                 </ul>
@@ -137,19 +54,18 @@
                 </h3>
                 <ul class="searchResults_leftrail_filterGroupOptions">
                   <li>
-                  <input type="checkbox" id="date-1" />
+                  <input class="searchResults_leftrail_filterGroupCheckBox" type="checkbox" id="airport-1" name="airport" value="MAN"/>
                     <label for="airport-1">Manchester</label>
-                    
                   </li>
 
                    <li>
-                   <input type="checkbox" id="date-1" />
-                    <label for="date-2">East Midlands</label>
+                   <input class="searchResults_leftrail_filterGroupCheckBox" type="checkbox" id="airport-2"  name="airport" value="EMA"/>
+                    <label for="airport-2">East Midlands</label>
                   </li>
 
                     <li>
-                   <input type="checkbox" id="date-1" />
-                    <label for="date-2">Liverpool</label>
+                   <input class="searchResults_leftrail_filterGroupCheckBox" type="checkbox" id="airport-3"  name="airport"value="LPL" />
+                    <label for="airport-3">Liverpool</label>
                   </li>
                 </ul>
               </div>
@@ -164,14 +80,15 @@
         </div>
 
         <div class="searchResults_cardContainer" >
-          <div class="searchResults_card" data-alphabet="Aguamarine Golf Hotel and Apartments" data-star="4" data-price="499.99">
+          <div class="searchResults_card" data-alphabet="Aguamarine Golf Hotel and Apartments" data-star="4" data-price="499.99" data-departure="2017-07-3" data-airport="EMA">
             <div class="searchResults_card_destination">
               <div class="searchResults_card_hotel">
                   <h3 class="searchResults_card_hotelTitle" >
                     Aguamarine Golf Hotel and Apartments
                   </h3>
-                  <span class="searchResults_card_hotelRating" > 
-                  </span>
+                  <div class="searchResults_card_hotelRating" > 
+                  <span>&#x2605;</span><span>&#x2605;</span><span>&#x2605;</span><span>&#x2605;</span>
+                  </div>
                   <h5 class="searchResults_card_hotelResort">Costa Adeje, Tenerife   </h5>
               </div>
               <div class="searchResults_card_price">
@@ -203,14 +120,15 @@
             </div>
           </div>
 
-           <div class="searchResults_card" data-alphabet="Costa Adeje" data-star="5" data-price="1299.99">
+           <div class="searchResults_card" data-alphabet="Costa Adeje" data-star="5" data-price="1299.99" data-departure="2017-07-3" data-airport="MAN">
             <div class="searchResults_card_destination">
               <div class="searchResults_card_hotel">
                 <h3 class="searchResults_card_hotelTitle">
                     Costa Adeje Gran Hotel
                   </h3>
-                  <span class="searchResults_card_hotelRating"> 
-                  </span>
+                  <div class="searchResults_card_hotelRating"> 
+                   <span>&#x2605;</span><span>&#x2605;</span><span>&#x2605;</span><span>&#x2605;</span><span>&#x2605;</span>
+                  </div>
                   <h5 class="searchResults_card_hotelResort">Costa Adeje, Tenerife </h5>
               </div>
               <div class="searchResults_card_price">
@@ -242,14 +160,15 @@
             </div>
           </div>
 
-           <div class="searchResults_card" data-alphabet="Laguna Park" data-star="3" data-price="696">
+           <div class="searchResults_card" data-alphabet="Laguna Park" data-star="3" data-price="696" data-departure="2017-07-21" data-airport="LPL">
             <div class="searchResults_card_destination">
               <div class="searchResults_card_hotel">
                 <h3 class="searchResults_card_hotelTitle">
                     Laguna Park II
                   </h3>
-                  <span class="searchResults_card_hotelRating"> 
-                  </span>
+                  <div class="searchResults_card_hotelRating"> 
+                  <span>&#x2605;</span><span>&#x2605;</span><span>&#x2605;</span>
+                  </div>
                   <h5 class="searchResults_card_hotelResort">Costa Adeje, Tenerife   </h5>
               </div>
               <div class="searchResults_card_price">

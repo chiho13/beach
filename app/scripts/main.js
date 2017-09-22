@@ -9,20 +9,31 @@
 		};
 
 		component.elements = function() {
-			component.accordionHeader = document.querySelectorAll('.searchResults_cardAccordionHeader');
-			component.sortingButtons = document.querySelectorAll('.searchResults_facets_sortingButton');
-			component.cardContainer = document.querySelector('.searchResults_cardContainer');
+			component.element = document.querySelector('.searchResults');
+			component.accordionHeader = component.element.querySelectorAll('.searchResults_cardAccordionHeader');
+			component.sortingButtons = component.element.querySelectorAll('.searchResults_facets_sortingButton');
+			component.cardContainer = component.element.querySelector('.searchResults_cardContainer');
 		};
 
 		component.setupClickEvents = function() {
-			Array.from(component.accordionHeader).forEach(function(el) {
+			component.accordionHeader.forEach(function(el) {
 				el.addEventListener('click', component.openAccordions);
 			})
 
-			Array.from(component.sortingButtons).forEach(function(el) {
+			component.sortingButtons.forEach(function(el) {
 				el.addEventListener('click', component.sortResults);
 			});
+
+			component.setupFilter();
 		};
+
+		component.setupFilter = function() {
+			component.selectedFilters = [];
+			component.filterCheckBoxes = component.element.querySelectorAll("input[type=checkbox].searchResults_leftrail_filterGroupCheckBox");
+			component.filterCheckBoxes.forEach(function(el) {
+				el.addEventListener('change', component.filterResults);
+			});
+		}
 
 		component.openAccordions = function(e) {
 			e.preventDefault();
@@ -46,17 +57,25 @@
 
 			var currentTarget = e.currentTarget;
 			var whichSort = currentTarget.getAttribute('data-sort');
+			var sortingButtonActive = component.element.querySelector('.searchResults_facets_sortingButton-active');
+			currentTarget.classList.add('searchResults_facets_sortingButton-active');
 
-			console.log(whichSort);
+			if (currentTarget !== sortingButtonActive) {
+				sortingButtonActive.classList.remove('searchResults_facets_sortingButton-active');
+			}
 
-			component.sortAlphabet(whichSort)
+			component.sortAlphabet(whichSort);
+		}
+
+		component.cards = function() {
+			return component.element.querySelectorAll('.searchResults_card');
 		}
 
 		component.sortAlphabet = function(whichSort) {
-			component.cards = document.querySelectorAll('.searchResults_card');
+			
 			var whichSortDataAttr = 'data-' + whichSort;
 			var sortingArr = [];
-			Array.from(component.cards).forEach(function(cards) {
+			component.cards().forEach(function(cards) {
 				var dataAttr = cards.getAttribute(whichSortDataAttr);
 				var isNumber = /\d/.test(dataAttr);
 				var newNumbers = isNumber ? Number(dataAttr) : dataAttr;	
@@ -66,7 +85,7 @@
 			if (whichSort == 'price' || whichSort == 'star') {
 				sortingArr.sort(function(a, b){return a-b});
 			} else {
-			 	sortingArr.sort();
+				sortingArr.sort();
 			}
 
 			var orderedAttr = [];
@@ -81,7 +100,7 @@
 			var reformDataAttr = whichSortDataAttr + '=';
 			var htmlElements = [];
 			Array.from(orderedAttr).forEach(function(element) {
-				var orderEl = document.querySelector('['+ reformDataAttr + '"'+ element + '"'+ ']').outerHTML;
+				var orderEl = component.element.querySelector('['+ reformDataAttr + '"'+ element + '"'+ ']').outerHTML;
 				htmlElements.push(orderEl);
 			});
 
@@ -89,9 +108,33 @@
 			component.init();
 		};
 
+		component.filterResults = function() {
+			var name = this.name;
+			var value = this.value;
+			if (this.checked) {
+				component.selectedFilters.push([name, value]);
+			} else {
+				component.selectedFilters.pop([name, value]);
+			}
+
+			component.cards().forEach(function(el) {
+				if (component.selectedFilters.length > 0) {
+					el.style.display = 'none';
+				} else {
+					el.style.display = 'block';
+				}
+			});
+
+			component.selectedFilters.forEach(function(element) {
+				var nameAttr = '[data-' + element[0] + "=" + '"' +  element[1] + '"' + ']';
+				var filterEl = component.element.querySelector(nameAttr);
+				filterEl.style.display = "block";
+			});
+		};
+
 		return component;
 	};
 
-var newSearch = new SearchResults();
-newSearch.init();
+	var newSearch = new SearchResults();
+	newSearch.init();
 
