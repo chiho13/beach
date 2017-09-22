@@ -29,7 +29,7 @@
 
 		component.setupFilter = function() {
 			component.selectedFilters = [];
-			component.filterCheckBoxes = component.element.querySelectorAll("input[type=checkbox].searchResults_leftrail_filterGroupCheckBox");
+			component.filterCheckBoxes = component.element.querySelectorAll('input[type=checkbox].searchResults_leftrail_filterGroupCheckBox');
 			component.filterCheckBoxes.forEach(function(el) {
 				el.addEventListener('change', component.filterResults);
 			});
@@ -126,9 +126,9 @@
 			});
 
 			component.selectedFilters.forEach(function(element) {
-				var nameAttr = '[data-' + element[0] + "=" + '"' +  element[1] + '"' + ']';
+				var nameAttr = '[data-' + element[0] + '=' + '"' +  element[1] + '"' + ']';
 				var filterEl = component.element.querySelector(nameAttr);
-				filterEl.style.display = "block";
+				filterEl.style.display = 'block';
 			});
 		};
 
