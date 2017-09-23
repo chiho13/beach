@@ -2,8 +2,8 @@
 
 ##### setup
 
-> npm install
+```npm install```
 
-> gulp serve
+``gulp serve```
 
 --local environment hosted on port 9000
