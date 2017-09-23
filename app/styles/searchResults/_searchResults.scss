@@ -73,6 +73,7 @@ $searchResults_box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
 	flex-basis: 33%;
 	padding: ($core-padding * 2);
 	background-color: #B2EBF7;
+	color: $core-color-accent;
 	cursor: pointer;
 	transition: all 0.2s ease-in-out;
 	text-align: center;
@@ -86,7 +87,7 @@ $searchResults_box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
 		margin-left: $core-margin * 2;
 	}
 
-	&:hover {
+	&:hover, &:focus {
 		background-color: $core-color-accent;
 	}
 }
@@ -171,7 +172,6 @@ $searchResults_box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
 	padding: $core-padding;
 	background-color: $core-color-accent;
 	color: $core-light-color;
-	text-decoration: none; 
 }
 
 .searchResults_cardAccordionHeader_title {
