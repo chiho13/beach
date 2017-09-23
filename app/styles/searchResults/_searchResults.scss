@@ -1,3 +1,5 @@
+$searchResults_box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
+
 
 .searchResults {
 	position: relative;
@@ -14,6 +16,10 @@
 	padding-right: 10px;
 	padding-left: 10px;
 	display: block;
+}
+
+.searchResults_leftrail_filter {
+	box-shadow: $searchResults_box-shadow;
 }
 
 .searchResults_leftrail_filterHeader {
@@ -66,10 +72,11 @@
 .searchResults_facets_sortingButton {
 	flex-basis: 33%;
 	padding: ($core-padding * 2);
-	background-color: lighten($core-color-accent, 30%);
+	background-color: #B2EBF7;
 	cursor: pointer;
 	transition: all 0.2s ease-in-out;
 	text-align: center;
+	box-shadow: $searchResults_box-shadow;
 
 	&:first-child() {
 		margin-right: $core-margin * 2;
@@ -98,7 +105,7 @@
 	display: block;
 	margin-top: ($core-margin * 2);
 	margin-bottom: ($core-margin * 2);
-	box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
+	box-shadow: $searchResults_box-shadow;
 }
 
 .searchResults_card_destination {
