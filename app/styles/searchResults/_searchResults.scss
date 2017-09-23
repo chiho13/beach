@@ -169,12 +169,12 @@
 
 .searchResults_cardAccordionHeader_title {
 	margin-bottom: 0;
-	background: url('../../images/chevron.png') no-repeat;
+	background: url('../images/chevron.png') no-repeat;
 	background-size: 30px 30px;
 	background-position: 100%;
 
 	.searchResults_cardAccordion-open & {
-		background: url('../../images/chevronDown.png') no-repeat;
+		background: url('../images/chevronDown.png') no-repeat;
 		background-position: 100%;
 	}
 }
