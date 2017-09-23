@@ -29,13 +29,13 @@
 
 		component.setupFilter = function() {
 			component.selectedFilters = [];
-			component.filterCheckBoxes = component.element.querySelectorAll("input[type=checkbox].searchResults_leftrail_filterGroupCheckBox");
+			component.filterCheckBoxes = component.element.querySelectorAll('input[type=checkbox].searchResults_leftrail_filterGroupCheckBox');
 			component.filterCheckBoxes.forEach(function(el) {
 				el.addEventListener('change', component.filterResults);
 			});
 		};
 
-		component.openAccordions = function() {
+		component.openAccordions = function(e) {
 			e.preventDefault();
 			const currentTarget = e.currentTarget.parentElement;
 			const accordionContent = currentTarget.querySelector('.searchResults_cardAccordionContent');
@@ -98,7 +98,7 @@
 
 		component.renderNewOrder = function(orderedAttr, whichSortDataAttr) {
 			const reformDataAttr = whichSortDataAttr;
-			let htmlElements = "";
+			let htmlElements = '';
 			Array.from(orderedAttr).forEach(function(element) {
 				const orderEl = component.element.querySelector(`[${reformDataAttr}="${element}"]`).outerHTML;
 				htmlElements+=orderEl;
@@ -128,7 +128,7 @@
 			component.selectedFilters.forEach(function(element) {
 				const nameAttr = `[data-${element[0]}="${element[1]}"]`;
 				const filterEl = component.element.querySelector(nameAttr);
-				filterEl.style.display = "block";
+				filterEl.style.display = 'block';
 			});
 		};
 
