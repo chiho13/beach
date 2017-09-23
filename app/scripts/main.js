@@ -1,6 +1,6 @@
-	var SearchResults = function() {
+	const SearchResults = function() {
 
-		var component = {}
+		const component = {}
 
 
 		component.init = function() {
@@ -29,17 +29,17 @@
 
 		component.setupFilter = function() {
 			component.selectedFilters = [];
-			component.filterCheckBoxes = component.element.querySelectorAll('input[type=checkbox].searchResults_leftrail_filterGroupCheckBox');
+			component.filterCheckBoxes = component.element.querySelectorAll("input[type=checkbox].searchResults_leftrail_filterGroupCheckBox");
 			component.filterCheckBoxes.forEach(function(el) {
 				el.addEventListener('change', component.filterResults);
 			});
-		}
+		};
 
-		component.openAccordions = function(e) {
+		component.openAccordions = function() {
 			e.preventDefault();
-			var currentTarget = e.currentTarget.parentElement;
-			var accordionContent = currentTarget.querySelector('.searchResults_cardAccordionContent');
-			var hasClass = currentTarget.classList.contains('searchResults_cardAccordion-open');
+			const currentTarget = e.currentTarget.parentElement;
+			const accordionContent = currentTarget.querySelector('.searchResults_cardAccordionContent');
+			const hasClass = currentTarget.classList.contains('searchResults_cardAccordion-open');
 
 			currentTarget.classList.toggle('searchResults_cardAccordion-open');
 
@@ -50,14 +50,14 @@
 				accordionContent.setAttribute('aria-hidden', 'true');
 				e.currentTarget.setAttribute('aria-expanded', 'false');
 			}
-		}
+		};
 
 		component.sortResults = function(e) {
 			e.preventDefault();
 
-			var currentTarget = e.currentTarget;
-			var whichSort = currentTarget.getAttribute('data-sort');
-			var sortingButtonActive = component.element.querySelector('.searchResults_facets_sortingButton-active');
+			const currentTarget = e.currentTarget;
+			const whichSort = currentTarget.getAttribute('data-sort');
+			const sortingButtonActive = component.element.querySelector('.searchResults_facets_sortingButton-active');
 			currentTarget.classList.add('searchResults_facets_sortingButton-active');
 
 			if (currentTarget !== sortingButtonActive) {
@@ -65,20 +65,20 @@
 			}
 
 			component.sortAlphabet(whichSort);
-		}
+		};
 
 		component.cards = function() {
 			return component.element.querySelectorAll('.searchResults_card');
-		}
+		};
 
 		component.sortAlphabet = function(whichSort) {
 			
-			var whichSortDataAttr = 'data-' + whichSort;
-			var sortingArr = [];
+			const whichSortDataAttr = `data-${whichSort}`;
+			let sortingArr = [];
 			component.cards().forEach(function(cards) {
-				var dataAttr = cards.getAttribute(whichSortDataAttr);
-				var isNumber = /\d/.test(dataAttr);
-				var newNumbers = isNumber ? Number(dataAttr) : dataAttr;	
+				const dataAttr = cards.getAttribute(whichSortDataAttr);
+				const isNumber = /\d/.test(dataAttr);
+				const newNumbers = isNumber ? Number(dataAttr) : dataAttr;	
 				sortingArr.push(newNumbers);
 			});
 
@@ -88,7 +88,7 @@
 				sortingArr.sort();
 			}
 
-			var orderedAttr = [];
+			const orderedAttr = [];
 			Array.from(sortingArr).forEach(function(sorting){
 				orderedAttr.push(sorting);
 			})
@@ -97,11 +97,11 @@
 		};
 
 		component.renderNewOrder = function(orderedAttr, whichSortDataAttr) {
-			var reformDataAttr = whichSortDataAttr + '=';
-			var htmlElements = [];
+			const reformDataAttr = whichSortDataAttr;
+			let htmlElements = "";
 			Array.from(orderedAttr).forEach(function(element) {
-				var orderEl = component.element.querySelector('['+ reformDataAttr + '"'+ element + '"'+ ']').outerHTML;
-				htmlElements.push(orderEl);
+				const orderEl = component.element.querySelector(`[${reformDataAttr}="${element}"]`).outerHTML;
+				htmlElements+=orderEl;
 			});
 
 			component.cardContainer.innerHTML = htmlElements;
@@ -109,8 +109,8 @@
 		};
 
 		component.filterResults = function() {
-			var name = this.name;
-			var value = this.value;
+			const name = this.name;
+			const value = this.value;
 			if (this.checked) {
 				component.selectedFilters.push([name, value]);
 			} else {
@@ -126,15 +126,15 @@
 			});
 
 			component.selectedFilters.forEach(function(element) {
-				var nameAttr = '[data-' + element[0] + '=' + '"' +  element[1] + '"' + ']';
-				var filterEl = component.element.querySelector(nameAttr);
-				filterEl.style.display = 'block';
+				const nameAttr = `[data-${element[0]}="${element[1]}"]`;
+				const filterEl = component.element.querySelector(nameAttr);
+				filterEl.style.display = "block";
 			});
 		};
 
 		return component;
 	};
 
-	var newSearch = new SearchResults();
+	const newSearch = new SearchResults();
 	newSearch.init();
 
