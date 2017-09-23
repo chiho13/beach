@@ -1,8 +1,8 @@
 #### on the beach
 
--- setup
+##### setup
 
-```npm install ```
-```gulp serve ```
+> npm install
+> gulp serve
 
---local environment hosted on port 9000 --
+--local environment hosted on port 9000
