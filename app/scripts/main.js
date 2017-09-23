@@ -2,7 +2,6 @@
 
 		const component = {}
 
-
 		component.init = function() {
 			component.elements();
 			component.setupClickEvents();
@@ -73,23 +72,24 @@
 
 		component.sortAlphabet = function(whichSort) {
 			
-			const whichSortDataAttr = `data-${whichSort}`;
+			const whichSortDataAttr = whichSort;
 			let sortingArr = [];
+			let isNumber = false;
 			component.cards().forEach(function(cards) {
-				const dataAttr = cards.getAttribute(whichSortDataAttr);
-				const isNumber = /\d/.test(dataAttr);
+				const dataAttr = cards.dataset[whichSortDataAttr];
+				isNumber = /\d/.test(dataAttr);
 				const newNumbers = isNumber ? Number(dataAttr) : dataAttr;	
 				sortingArr.push(newNumbers);
 			});
 
-			if (whichSort == 'price' || whichSort == 'star') {
+			if (isNumber) {
 				sortingArr.sort(function(a, b){return a-b});
 			} else {
 				sortingArr.sort();
 			}
 
 			const orderedAttr = [];
-			Array.from(sortingArr).forEach(function(sorting){
+			sortingArr.forEach(function(sorting){
 				orderedAttr.push(sorting);
 			})
 
@@ -97,7 +97,7 @@
 		};
 
 		component.renderNewOrder = function(orderedAttr, whichSortDataAttr) {
-			const reformDataAttr = whichSortDataAttr;
+			const reformDataAttr = `data-${whichSortDataAttr}`;
 			let htmlElements = '';
 			Array.from(orderedAttr).forEach(function(element) {
 				const orderEl = component.element.querySelector(`[${reformDataAttr}="${element}"]`).outerHTML;
@@ -111,6 +111,7 @@
 		component.filterResults = function() {
 			const name = this.name;
 			const value = this.value;
+
 			if (this.checked) {
 				component.selectedFilters.push([name, value]);
 			} else {
